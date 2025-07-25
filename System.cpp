@@ -25,6 +25,7 @@ public:
         }
         return *this;
     }
+
 };
 class Management{
 private:
@@ -34,6 +35,7 @@ public:
     Management():head(nullptr),count(0){}
     void addStudent(Student& obj){
          addToTail(head,obj);
+         count++;
     }
     bool isValidStudent(int roll){
         return search(head,roll);
@@ -53,12 +55,15 @@ public:
             linkupdate(head,rollnu,latest);
         }
     }
-    void delte(Student& obj){
-
+    void delte(int rollnu){
+       if(this->isValidStudent(rollnu))
+        { link_delte(head,rollnu);
+        count--;}
     }
     friend ostream& operator<<(ostream& os,Management& obj){
         os<<"-----------------\n";
-        os<<"Name - RollNo - GPa\n";
+        cout<<"Total students : "<<obj.count<<endl;
+        os<<"Name - RollNo - GPA\n";
         display(obj.head);
         os<<endl;
         return os;
@@ -88,17 +93,26 @@ int main(){
     cout <<"Enter Roll number :" ;
     cin>>roll;
 
+    cout<<"---------- Search ----------\n";
     if(system.isValidStudent(roll)){
         cout<<roll<<" is valid student\n";
     }
     else {
         cout<<roll<<" is not valid\n";
     }
-
-    cout<<"Update --- "<<endl;
+    cout<<"--- Update --- "<<endl;
     system.update(roll);
-    
     cout<<"Updated  "<<endl;
     cout<<system<<endl;
+
+    cout<<"------- Delete ---------- \n";
+    int roll2;
+    cout <<"Enter Roll number :" ;
+    cin>>roll2;
+    system.delte(roll2);
+
+    cout<<"Updated  "<<endl;
+    cout<<system<<endl;
+
     return 0;
 }

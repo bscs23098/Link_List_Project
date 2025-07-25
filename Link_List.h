@@ -116,6 +116,24 @@ public:
         }
         return count;
     }
-
+    template <typename T>
+    void link_delte(node<T>*& head,int roll){
+        node<T> * temp = head;
+        while (head != nullptr && head->data.rollnumber == roll) {
+        node<T>* temp = head;
+        head = head->next;
+        delete temp;
+        }
+        node<T>* current = head;
+        while (current != nullptr && current->next != nullptr) {
+            if (current->next->data.rollnumber == roll) {
+                node<T>* temp = current->next;
+                current->next = temp->next;
+                delete temp;
+            } else {
+                current = current->next;
+            }
+        }
+    }
 
 #endif

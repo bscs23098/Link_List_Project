@@ -95,9 +95,10 @@ int main(){
         cout<<roll<<" is not valid\n";
     }
 
-    cout<<"Update : "<<endl;
-
+    cout<<"Update --- "<<endl;
+    system.update(roll);
     
-
+    cout<<"Updated  "<<endl;
+    cout<<system<<endl;
     return 0;
 }
